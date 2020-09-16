@@ -49,27 +49,29 @@ class Helpers
         return $arrayDate;
     }
 
-    private function parseRequest($params)
+    public function parseRequest($params)
     {
         $dateTo = Arr::get($params, 'dateTo', Carbon::parse('yesterday')->format('Y-m-d'));
         $dateFrom = Arr::get($params, 'dateFrom', Carbon::parse('-7 days')->format('Y-m-d'));
-        $fields = Arr::get($params, 'fields', 'custom_labels');
-        $exportType = Arr::get($params, 'exportType', 'analyticPlatformsExport');
-        $IDs = Arr::get($params, 'IDs', '');
+        $file = Arr::get($params, 'file', 'Not define');
+        $userUploaded = Arr::get($params, 'userUploaded', 'Not define');
+        $message = Arr::get($params, 'message', 'Not define');
+        $pathFile = Arr::get($params, 'pathFile', 'Not define');
         /// add default key in verifyRequest()
         return [
             'dateTo' => $dateTo,
             'dateFrom' => $dateFrom,
-            'fields' => $fields,
-            'exportType' => $exportType,
-            'IDs' => $IDs,
+            'file' => $file,
+            'userUploaded' => $userUploaded,
+            'message' => $message,
+            'pathFile' => $pathFile,
         ];
     }
 
     public function verifyRequest($params)
     {
         $requestKeys = array_keys($params);
-        $defaultKeys = ['dateTo', 'dateFrom', 'fields', 'exportType', 'IDs'];
+        $defaultKeys = ['dateTo', 'dateFrom', 'fileUpload', 'userUploaded'];
         if (empty($requestKeys)) {
             return $this->parseRequest($params);
         }

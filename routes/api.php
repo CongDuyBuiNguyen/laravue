@@ -39,8 +39,11 @@ Route::namespace('Api')->group(function() {
         Route::get('users/{user}/permissions', 'UserController@permissions')->middleware('permission:' . Acl::PERMISSION_PERMISSION_MANAGE);
         Route::put('users/{user}/permissions', 'UserController@updatePermissions')->middleware('permission:' .Acl::PERMISSION_PERMISSION_MANAGE);
         Route::get('roles/{role}/permissions', 'RoleController@permissions')->middleware('permission:' . Acl::PERMISSION_PERMISSION_MANAGE);
+        Route::post('auth/uploadFile', 'ToolController@uploadFile');
+        Route::get('auth/downloadFile', 'ToolController@downloadFile');
+        Route::get('auth/listFile', 'ToolController@show');
+        Route::get('auth/sendWorkerMessage', 'ToolController@sendWorkerMessage');
     });
-    Route::post('/upload', 'ToolController@upload');
 });
 
 // Fake APIs

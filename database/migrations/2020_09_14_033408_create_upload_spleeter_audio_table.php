@@ -20,10 +20,7 @@ class CreateUploadSpleeterAudioTable extends Migration
             $table->string('status')->default('uploaded');
             $table->string('user_uploaded')->nullable();
             $table->string('path_vocals')->nullable();
-            $table->string('path_drums')->nullable();
-            $table->string('path_bass')->nullable();
-            $table->string('path_piano')->nullable();
-            $table->string('path_others')->nullable();
+            $table->string('path_accompaniment')->nullable();
             $table->timestamp('created_at')->nullable();
             $table->timestamp('updated_at')->useCurrent();
         });

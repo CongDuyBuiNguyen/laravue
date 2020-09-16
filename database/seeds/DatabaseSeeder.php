@@ -17,12 +17,12 @@ class DatabaseSeeder extends Seeder
         $admin = User::create([
             'name' => 'Admin',
             'email' => 'admin@laravue.dev',
-            'password' => Hash::make('laravue'),
+            'password' => Hash::make('pADf:5x/:H.#!SG'),
         ]);
         $manager = User::create([
             'name' => 'Manager',
             'email' => 'manager@laravue.dev',
-            'password' => Hash::make('laravue'),
+            'password' => Hash::make('pADf:5x/:H.#!SG'),
         ]);
         $editor = User::create([
             'name' => 'Editor',

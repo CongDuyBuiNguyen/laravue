@@ -8,6 +8,7 @@ use App\Laravue\Models\Business\ToolModel;
 use App\Transformers\ToolTransformer;
 use Bschmitt\Amqp\Facades\Amqp;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Response;
 use League\Fractal\Manager;
 
@@ -33,6 +34,7 @@ class ToolController extends BaseController
         $requestParams = $this->_helpers->parseRequest($request->all());
         $uploadPath = public_path('upload');
         $fileName = $requestParams['file']->getClientOriginalName();
+        $fileName = str_replace(" ", "_", $fileName);
         $requestParams['file']->move($uploadPath, $fileName);
         $data = [
             'path_file' => $uploadPath . '/' . $fileName,
@@ -63,11 +65,13 @@ class ToolController extends BaseController
     {
         $requestParams = $this->_helpers->parseRequest($request->all());
         $message = json_decode($requestParams['message']);
+        $configs = Config::get('services.dotmark');
+        $queueName = $configs['queue'];
         Amqp::publish(
-            'd41d8cd98f00b204e9800998ecf8427e',
+            $queueName,
             json_encode($message),
             [
-                'queue'=>'d41d8cd98f00b204e9800998ecf8427e',
+                'queue'=>$queueName,
                 'queue_durable' => 'true',
             ]
         );

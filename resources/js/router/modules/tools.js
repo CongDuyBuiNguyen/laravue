@@ -9,7 +9,7 @@ const toolsRoutes = {
   meta: {
     title: 'Tools',
     icon: 'skill',
-    permissions: [''],
+    permissions: ['view menu tools'],
   },
   children: [
     {

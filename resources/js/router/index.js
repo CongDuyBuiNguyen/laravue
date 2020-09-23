@@ -13,7 +13,7 @@ Vue.use(Router);
 import Layout from '@/layout';
 
 /* Router for modules */
-import elementUiRoutes from './modules/element-ui';
+// import elementUiRoutes from './modules/element-ui';
 import componentRoutes from './modules/components';
 import chartsRoutes from './modules/charts';
 import tableRoutes from './modules/table';
@@ -93,46 +93,46 @@ export const constantRoutes = [
       },
     ],
   },
-  {
-    path: '/documentation',
-    component: Layout,
-    redirect: '/documentation/index',
-    children: [
-      {
-        path: 'index',
-        component: () => import('@/views/documentation/index'),
-        name: 'Documentation',
-        meta: { title: 'documentation', icon: 'documentation', noCache: true },
-      },
-    ],
-  },
-  {
-    path: '/profile',
-    component: Layout,
-    redirect: '/profile/edit',
-    children: [
-      {
-        path: 'edit',
-        component: () => import('@/views/users/SelfProfile'),
-        name: 'SelfProfile',
-        meta: { title: 'userProfile', icon: 'user', noCache: true },
-      },
-    ],
-  },
-  {
-    path: '/guide',
-    component: Layout,
-    redirect: '/guide/index',
-    children: [
-      {
-        path: 'index',
-        component: () => import('@/views/guide/index'),
-        name: 'Guide',
-        meta: { title: 'guide', icon: 'guide', noCache: true },
-      },
-    ],
-  },
-  elementUiRoutes,
+  // {
+  //   path: '/documentation',
+  //   component: Layout,
+  //   redirect: '/documentation/index',
+  //   children: [
+  //     {
+  //       path: 'index',
+  //       component: () => import('@/views/documentation/index'),
+  //       name: 'Documentation',
+  //       meta: { title: 'documentation', icon: 'documentation', noCache: true },
+  //     },
+  //   ],
+  // },
+  // {
+  //   path: '/profile',
+  //   component: Layout,
+  //   redirect: '/profile/edit',
+  //   children: [
+  //     {
+  //       path: 'edit',
+  //       component: () => import('@/views/users/SelfProfile'),
+  //       name: 'SelfProfile',
+  //       meta: { title: 'userProfile', icon: 'user', noCache: true },
+  //     },
+  //   ],
+  // },
+  // {
+  //   path: '/guide',
+  //   component: Layout,
+  //   redirect: '/guide/index',
+  //   children: [
+  //     {
+  //       path: 'index',
+  //       component: () => import('@/views/guide/index'),
+  //       name: 'Guide',
+  //       meta: { title: 'guide', icon: 'guide', noCache: true },
+  //     },
+  //   ],
+  // },
+  // elementUiRoutes,
 ];
 
 export const asyncRoutes = [
@@ -143,19 +143,19 @@ export const asyncRoutes = [
   nestedRoutes,
   tableRoutes,
   adminRoutes,
-  {
-    path: '/theme',
-    component: Layout,
-    redirect: 'noredirect',
-    children: [
-      {
-        path: 'index',
-        component: () => import('@/views/theme/index'),
-        name: 'Theme',
-        meta: { title: 'theme', icon: 'theme' },
-      },
-    ],
-  },
+  // {
+  //   path: '/theme',
+  //   component: Layout,
+  //   redirect: 'noredirect',
+  //   children: [
+  //     {
+  //       path: 'index',
+  //       component: () => import('@/views/theme/index'),
+  //       name: 'Theme',
+  //       meta: { title: 'theme', icon: 'theme' },
+  //     },
+  //   ],
+  // },
   {
     path: '/clipboard',
     component: Layout,
@@ -219,16 +219,16 @@ export const asyncRoutes = [
       },
     ],
   },
-  {
-    path: '/external-link',
-    component: Layout,
-    children: [
-      {
-        path: 'https://github.com/tuandm/laravue',
-        meta: { title: 'externalLink', icon: 'link' },
-      },
-    ],
-  },
+  // {
+  //   path: '/external-link',
+  //   component: Layout,
+  //   children: [
+  //     {
+  //       path: 'https://github.com/tuandm/laravue',
+  //       meta: { title: 'externalLink', icon: 'link' },
+  //     },
+  //   ],
+  // },
   { path: '*', redirect: '/404', hidden: true },
 ];
 

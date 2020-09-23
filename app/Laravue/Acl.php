@@ -37,6 +37,7 @@ final class Acl
     const PERMISSION_VIEW_MENU_ZIP = 'view menu zip';
     const PERMISSION_VIEW_MENU_PDF = 'view menu pdf';
     const PERMISSION_VIEW_MENU_I18N = 'view menu i18n';
+    const PERMISSION_VIEW_MENU_TOOLS = 'view menu tools';
 
     const PERMISSION_USER_MANAGE = 'manage user';
     const PERMISSION_ARTICLE_MANAGE = 'manage article';

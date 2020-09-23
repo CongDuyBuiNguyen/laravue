@@ -17,7 +17,7 @@
     </div>
 
     <div class="filter-container">
-      <el-input v-model="listQuery.fileName" :placeholder="'File name'" style="width: 225px;" class="filter-item" @keyup.enter.native="handleFilter" />
+      <el-input v-model="listQuery.name_file" :placeholder="'File name'" style="width: 225px;" class="filter-item" @keyup.enter.native="handleFilter" />
       <el-select v-model="listQuery.sort" style="width: 140px" class="filter-item" @change="handleFilter">
         <el-option v-for="item in sortOptions" :key="item.key" :label="item.label" :value="item.key" />
       </el-select>
@@ -133,7 +133,7 @@ export default {
         page: 1,
         limit: 25,
         pageSizes: [10, 25, 50, 100],
-        fileName: undefined,
+        name_file: undefined,
         sort: '-id',
       },
       sortOptions: [
@@ -152,20 +152,22 @@ export default {
   },
   methods: {
     onFileChange(e){
+      this.isLoading = true;
       this.file = e.target.files[0];
+      this.isLoading = false;
     },
     formSubmit(e) {
-      this.isLoading = true;
       e.preventDefault();
       const currentObj = this;
       const formData = new FormData();
       formData.append('file', this.file);
       formData.append('userUploaded', this.$store.getters.name);
       uploadFile(formData).then(response => {
+        this.isLoading = true;
         currentObj.success = response.data;
+        this.isLoading = false;
+        this.getData();
       });
-      this.isLoading = false;
-      this.getData();
     },
     async getData() {
       this.isLoading = true;
@@ -175,7 +177,11 @@ export default {
         data = response['data']['list_file'];
       }
       data = data.filter(item => {
-        return !(this.listQuery.fileName && item.fileName.indexOf(this.listQuery.fileName) < 0);
+        let fileName;
+        if (this.listQuery.name_file) {
+          fileName = this.listQuery.name_file.toLowerCase();
+        }
+        return !(fileName && item.name_file.toLowerCase().indexOf(fileName) < 0);
       });
       if (this.listQuery.sort === '-id') {
         data = data.reverse();
